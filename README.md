@@ -25,7 +25,9 @@ public:
     void chooseplayer(int);
 };
 
-void tableview::show(){
+
+void tableview::show()
+{
     cout<<"____"<<endl;
     for(int i=0;i<10;i++){
         cout << table[i];
