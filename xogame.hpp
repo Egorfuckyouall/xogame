@@ -1,3 +1,11 @@
+//
+//  timhuangxogame.hpp
+//  xogame
+//
+//  Created by 呈澤 林 on 2017/8/21.
+//  Copyright © 2017年 呈澤 林. All rights reserved.
+//
+
 #ifndef timhuangxogame_hpp
 #define timhuangxogame_hpp
 #include <iostream>
@@ -231,6 +239,8 @@ void virtal::retable1(tableview& A){
     A.winnerplayer = 0;
 }
 
+
+//利用下方計算何時回傳分數至上一步，與回傳至上一步的分數
 int virtal::retablecondition(tableview A){
     int temp = 1;
     int number = 0;
@@ -299,12 +309,9 @@ void virtal::virtalmove(tableview A){
                     mtable[i][B.stepcout] = B.table[i];
             }
             if(B.endcondition){                                   /////  判定輸贏後，回傳值至scoretable[R.move[B.stepcout-1]][B.stepcout - 1]，
-                cout << "執行  if(B.endcondition)" <<endl;         ////   並使用retable1返回棋盤至B.stepcout-1
-                record(B,R);
+                record(B,R);                                      /////   並使用retable1返回棋盤至B.stepcout-1
                 retable1(B);
             }
-            shows(B);
-            B.show();
         }
         
         cout << "retablecondition(B) != 0" <<endl;
@@ -313,11 +320,8 @@ void virtal::virtalmove(tableview A){
             while (retablecondition(B) != 0 && A.stepcout != B.stepcout){
                 scoretable[R.move[B.stepcout-1]][B.stepcout-1] = retablecondition(B);
                 retable1(B);
-                
-                shows(B);
-                B.show();
-                cout << "retablecondition(B) = " << retablecondition(B) << endl;
             }
         }
     }
-    cout << "============" << A.stepcout << endl;
+    shows(A);
+}
